@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import classes from "./Login.module.css";
 const Login = () => {
+  const history =useHistory();
   const mailInputRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
@@ -59,9 +61,11 @@ const Login = () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        console.log(data.idToken);
 
         console.log("signed up successfully");
+        history.replace("/home");
+        localStorage.setItem("token",data.idToken)
       })
       .catch((err) => {
         console.log(err.message);
