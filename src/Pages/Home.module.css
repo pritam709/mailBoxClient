@@ -1,0 +1,45 @@
+.topDiv{
+    display:flex;
+    justify-content:space-between;
+}
+.editor{
+
+    max-width:80%;
+    height:600px;
+    border:1px solid black;
+    margin-left:10%;
+    position: relative;
+    border: 2px solid black;
+    padding: 10px;
+
+}
+.input{
+    outline:none;
+    border:none;
+    margin-left:20px;
+    width:80%;
+    font-size:1.2rem;
+}
+.btn{
+    background-color:#488cfa;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:7px;
+    font-size:1rem;
+    cursor:pointer;
+    
+}
+
+.btn:hover{
+    background-color:#245ebd
+}
+
+
+ .btn-container{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+   
+ }

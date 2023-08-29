@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import classes from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/authSlice";
 const Login = () => {
+  const dispatch= useDispatch();
   const history =useHistory();
   const mailInputRef = useRef();
   const passwordRef = useRef();
@@ -61,11 +64,16 @@ const Login = () => {
         }
       })
       .then((data) => {
-        console.log(data.idToken);
+        console.log(data);
+        const user={
+          email:data.email,
+          token:data.idToken
+        }
 
         console.log("signed up successfully");
+        dispatch(authActions.login(user))
         history.replace("/home");
-        localStorage.setItem("token",data.idToken)
+        // localStorage.setItem("token",data.idToken)
       })
       .catch((err) => {
         console.log(err.message);
