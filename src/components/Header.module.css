@@ -1,0 +1,19 @@
+.btn{
+    background-color:#488cfa;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:7px;
+    font-size:1rem;
+    cursor:pointer;
+    margin-left:30px;
+    
+}
+
+.btn:hover{
+    background-color:#245ebd
+}
+.topDiv{
+    display:flex;
+    justify-content:space-between;
+}

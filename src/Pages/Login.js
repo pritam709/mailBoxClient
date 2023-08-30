@@ -72,7 +72,7 @@ const Login = () => {
 
         console.log("signed up successfully");
         dispatch(authActions.login(user))
-        history.replace("/home");
+        history.replace("/compose");
         // localStorage.setItem("token",data.idToken)
       })
       .catch((err) => {

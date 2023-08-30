@@ -1,9 +1,9 @@
-import React from "react";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Header from "../components/Header";
-const Inbox = () => {
-  const email = useSelector((state) => state.email);
+
+const SentBox=()=>{
+    const email = useSelector((state) => state.email);
   let trimmedMail = "";
   for (let i of email) {
     if (i !== "@" && i !== ".") {
@@ -27,27 +27,26 @@ const Inbox = () => {
         });
       }
       console.log(fetchResult);
-      const inbox= fetchResult.filter(item=>item.receiver===email);
-      console.log(inbox);
-      setMails(inbox);
+      const sentbox= fetchResult.filter(item=>item.sender===email);
+      console.log(sentbox);
+      setMails(sentbox);
     };
     fetchMails();
   }, [trimmedMail,email]);
-  
-  return (
-    <>
-      {" "}
-      <Header/>
-      <h3>Inbox....</h3>
-     <ul>
+    return<>
+    <Header/>
+       <h3>
+        Sentbox...
+       </h3>
+       <ul>
         {mails.map(item=>{
             return <li key={item.id}>
-               {item.sender} &nbsp; &nbsp;
-               {item.content.substring(0,15)}
+              To: &nbsp; {item.receiver} &nbsp; &nbsp;
+               subject:{item.subject}  &nbsp; &nbsp;
+               {item.content.substring(0,15)}....
             </li>
         })}
      </ul>
     </>
-  );
-};
-export default Inbox;
+}
+export default SentBox;

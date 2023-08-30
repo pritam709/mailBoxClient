@@ -4,18 +4,13 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from "draft-js";
 import classes from "./Home.module.css";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { authActions } from "../store/authSlice";
+import Header from "../components/Header";
+
 
 const Home = () => {
-  const dispatch = useDispatch();
+  
   const senderMail = useSelector((state) => state.email);
-  let trimmedSenderMail="";
-  for(let i of senderMail){
-      if(i!=="@" && i!=="."){
-        trimmedSenderMail+=i;
-      }
-  }
+ 
   const sendTo = useRef();
   const subject = useRef();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -56,6 +51,12 @@ const Home = () => {
       }
     ).then(res=>res.json()).then(data=>{
         console.log(data);
+        let trimmedSenderMail="";
+        for(let i of senderMail){
+            if(i!=="@" && i!=="."){
+              trimmedSenderMail+=i;
+            }
+        }
 
         fetch(
             `https://mailbox-7f19c-default-rtdb.firebaseio.com/${trimmedSenderMail}/mail.json`,
@@ -68,26 +69,19 @@ const Home = () => {
             }
           ).then(res=>res.json()).then(data=>{
               console.log(data);
+              window.alert("mail sent successfully")
           })
     });
   };
 
   
   
-  const logoutHandler = () => {
-    dispatch(authActions.logout());
-  };
+  
 
   return (
+    
     <>
-      <div className={classes.topDiv}>
-        <h3>welcome to your mail box</h3>
-        <button className={classes.btn} onClick={logoutHandler}>
-          Logout
-        </button>
-      </div>
-
-      <hr></hr>
+     <Header/>
       <div className={classes.editor}>
         <form onSubmit={formSubmitHandler}>
           <input
