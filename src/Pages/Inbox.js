@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
 const Inbox = () => {
-  const email = useSelector((state) => state.email);
+  const email = useSelector((state) => state.auth.email);
   let trimmedMail = "";
   for (let i of email) {
     if (i !== "@" && i !== ".") {

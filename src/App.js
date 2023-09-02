@@ -7,7 +7,7 @@ import SentBox from "./Pages/SentBox";
 import { useSelector } from "react-redux";
 
 function App() {
- const isLogin= useSelector(state=>state.isLogin)
+ const isLogin= useSelector(state=>state.auth.isLogin)
   return (
     <div className="App">
       <Switch>
