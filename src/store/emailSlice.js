@@ -15,6 +15,10 @@ const emailSlice=createSlice({
             state.isChanged=true;
 
 
+        },
+
+        replaceSentBox(state,action){
+            state.sentBox=action.payload.sentBox;
         }
 
 
