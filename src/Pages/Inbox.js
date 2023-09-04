@@ -1,52 +1,40 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import classes from "./Inbox.module.css"
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 const Inbox = () => {
-  const email = useSelector((state) => state.auth.email);
-  let trimmedMail = "";
-  for (let i of email) {
-    if (i !== "@" && i !== ".") {
-      trimmedMail += i;
+ 
+  const inbox = useSelector((state) => state.email.inbox);
+  const unread=inbox.reduce((curr,item)=>{
+    if(item.read===false){
+      return curr+1;
     }
-  }
-  const [mails, setMails] = useState([]);
-  useEffect(() => {
-    const fetchMails = async () => {
-      const response = await fetch(
-        `https://mailbox-7f19c-default-rtdb.firebaseio.com/${trimmedMail}/mail.json`
-      );
+    return curr;
+  },0)
+  console.log(inbox);
 
-      const resData = await response.json();
-      console.log(resData);
-      const fetchResult = [];
-      for (let key in resData) {
-        fetchResult.unshift({
-          ...resData[key],
-          id: key,
-        });
-      }
-      console.log(fetchResult);
-      const inbox= fetchResult.filter(item=>item.receiver===email);
-      console.log(inbox);
-      setMails(inbox);
-    };
-    fetchMails();
-  }, [trimmedMail,email]);
-  
   return (
     <>
       {" "}
-      <Header/>
+      <Header />
       <h3>Inbox....</h3>
-     <ul>
-        {mails.map(item=>{
-            return <li key={item.id}>
-               {item.sender} &nbsp; &nbsp;
-               {item.content.substring(0,15)}
+      <ul>
+      Total unread  mails:{unread}
+        {inbox.map((item) => {
+          return (
+            <li key={item.id}>
+              <Link to={`/inbox/${item.id}`}>
+                {" "}
+                {!item.read && <span className={classes.dot}></span>}
+                From: &nbsp; {item.sender} &nbsp; &nbsp; subject:{item.subject}{" "}
+                &nbsp; &nbsp;
+                {item.content.substring(0, 15)}....
+              </Link>
             </li>
+          );
         })}
-     </ul>
+      </ul>
     </>
   );
 };

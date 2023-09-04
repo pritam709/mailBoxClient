@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
     sentBox:[],
-    isChanged:false
+    isChanged:false,
+    inboxChange:false,
+    inbox:[]
 }
 const emailSlice=createSlice({
     name:"email",
@@ -19,8 +21,19 @@ const emailSlice=createSlice({
 
         replaceSentBox(state,action){
             state.sentBox=action.payload.sentBox;
-        }
+        },
+        inboxFn(state,action){
 
+            // state.sentBox.push(action.payload);
+            // console.log(state.sentBox);
+            // state.isChanged=true;
+
+
+        },
+
+        replaceInbox(state,action){
+            state.inbox=action.payload.inbox;
+        }
 
 
     }

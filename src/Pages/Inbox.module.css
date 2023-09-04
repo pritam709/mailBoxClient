@@ -1,18 +1,17 @@
-.topDiv{
-    display:flex;
-    justify-content:space-between;
-}
-.btn{
-    background-color:#488cfa;
-    color:white;
-    border:none;
-    padding:10px;
-    border-radius:7px;
-    font-size:1rem;
-    cursor:pointer;
-    
-}
 
-.btn:hover{
-    background-color:#245ebd
-}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color:blue;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  ul {
+list-style:none;
+  }
+
+  a{
+    text-decoration :none
+  }

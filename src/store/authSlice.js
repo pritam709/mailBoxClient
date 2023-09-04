@@ -28,6 +28,7 @@ const authSlice=createSlice({
             state.isLogin=false;
             localStorage.removeItem("token");
             localStorage.removeItem("email");
+            
         }
     }
 })
