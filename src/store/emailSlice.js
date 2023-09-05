@@ -33,7 +33,11 @@ const emailSlice=createSlice({
 
         replaceInbox(state,action){
             state.inbox=action.payload.inbox;
-        }
+        },
+
+        deleteMail(state,action){
+            state.inbox=state.inbox.filter(item=>item.id!==action.payload)
+        },
 
 
     }

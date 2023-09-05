@@ -10,7 +10,7 @@ const MailDetail = () => {
   useEffect(() => {
     const sendRequest = async () => {
       const email = localStorage.getItem("email");
-      // console.log(email);
+      
       let trimmedMail = "";
       if (email) {
         for (let i of email) {
