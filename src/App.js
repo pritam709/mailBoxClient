@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sentEmailsData } from "./store/emailActions";
 import { fetchSentBox } from "./store/emailActions";
 import { fetchinbox } from "./store/emailActions";
+import SentMailDetail from "./Pages/SentMailDetail";
 
 function App() {
 
@@ -55,11 +56,14 @@ function App() {
         {isLogin && <Route path="/inbox" exact>
           <Inbox />
         </Route>}
-       {isLogin && <Route path="/sentbox">
+       {isLogin && <Route path="/sentbox" exact>
           <SentBox />
         </Route>}
         {isLogin && <Route path="/inbox/:mailId" >
           <MailDetail/>
+        </Route>}
+        {isLogin && <Route path="/sentbox/:mailId" >
+          <SentMailDetail/>
         </Route>}
         <Route path="*" >
           <Login />

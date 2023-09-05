@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
@@ -46,9 +47,11 @@ const SentBox=()=>{
        <ul>
         {mails.map(item=>{
             return <li key={item.id}>
+            <Link to={`/sentbox/${item.id}`}>
               To: &nbsp; {item.receiver} &nbsp; &nbsp;
                subject:{item.subject}  &nbsp; &nbsp;
                {item.content.substring(0,15)}....
+               </Link>
             </li>
         })}
      </ul>
