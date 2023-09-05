@@ -30,8 +30,12 @@ function App() {
    }, [dispatch,isLogin]);
 
    useEffect(() => {
+  
     console.log("2-nd UE");
-    dispatch(fetchinbox());
+    const interval = setInterval(() => {
+      dispatch(fetchinbox());
+    }, 2000)
+   
   }, [dispatch,isLogin]);
 
 
